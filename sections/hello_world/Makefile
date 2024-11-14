@@ -1,11 +1,14 @@
 asm:
-	rgbasm -L -o cartridge.o *.asm
+	rgbasm -o hello-world.o hello-world.asm
 
 link:
-	rgblink -o cartridge.gb cartridge.o
+	rgblink -o hello-world.gb hello-world.o
 
 fix:
-	rgbfix -v -p 0xFF cartridge.gb
+	rgbfix -v -p 0xFF hello-world.gb
 
 run:
-	open cartridge.gb -a visualboyadvance-m
+	open hello-world.gb -a sameboy
+
+map:
+	rgblink hello-world.o -m hello-world.map
