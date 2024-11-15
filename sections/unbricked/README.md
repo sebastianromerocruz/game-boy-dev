@@ -45,7 +45,7 @@ The basic operations of the Z80 are referred to as _instructions_, referring to 
 |---------|-------------|--------|-------------|---------|
 | `ld` | Load | `ld x, y` | Copies value `y` (which can be both a literal or a reference) into `x` | `ld a, 0` |
 | `jp` | Jump | `jp label` | Transfers control to the first line below the `label` label | `jp EntryPoint` |
-| `ds` | Define storage / space | `ds location, value` | Similar to C's `malloc`, reserves a specified number of bytes in memory, sort of like "padding" for later instantiation. | `jp EntryPoint` |
+| `ds` | Define storage / space | `ds location, value` | Similar to C's `malloc`, reserves a specified number of bytes in memory, sort of like "padding" for later instantiation. | `ds $150 - @, 0  ; current position up to $150 is filled with zeros` |
 
 <sub>**Figure 1**: Z80 Op Codes.</sub>
 
@@ -58,6 +58,6 @@ Directives work more like instructions to the assembler, so more like a [**macro
 | Directive | Syntax | Explanation | Example |
 |---------|-------------|--------|-------------|
 | `INCLUDE` | `INCLUDE "filepath"` | Pretty much an analogue to C's `include` or Python's `import` | `INCLUDE "hardware.incs"` |
-| `SECTION` | `SECTION NAME, ROM0[LOC]` | Groups a series of related instructions and data at a certain in the ROM. | `SECTION "ds $150 - @, 0  ; current position up to $150 is filled with zeros` |
+| `SECTION` | `SECTION NAME, ROM0[LOC]` | Groups a series of related instructions and data at a certain in the ROM. | `SECTION "header, ROM0 [$100]` |
 
 <sub>**Figure 2**: Z80 Directives. Note that `[LOC]` in Z80 is how we specify "the value stored at `LOC` (i.e. absolute addressing).</sub>
