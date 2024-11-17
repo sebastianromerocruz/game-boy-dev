@@ -1,8 +1,8 @@
 ; Author: Sebastián Romero Cruz
 ; Description: Main file for the unbricked ROM 
-INCLUDE "assets/hardware.inc"
-INCLUDE "assets/tiles.asm"
-INCLUDE "assets/tilemap.asm"
+INCLUDE "assets/hardware.inc"  ; Include the hardware definitions
+INCLUDE "assets/tiles.asm"     ; Include the tiles
+INCLUDE "assets/tilemap.asm"   ; Include the tilemap
 
 SECTION "Header", ROM0[$100]
     jp EntryPoint   ; Jump to the entry point
