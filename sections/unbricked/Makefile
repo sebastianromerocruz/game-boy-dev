@@ -8,7 +8,8 @@ fix:
 	rgbfix -v -p 0xFF out/unbricked.gb
 
 run:
-	open out/unbricked.gb -a sameboy
+	# open out/unbricked.gb -a ../../emulicious/Emulicious.jar
+	java -jar ../../emulicious/Emulicious.jar out/unbricked.gb
 
 map:
 	rgblink out/main.o -m out/main.map

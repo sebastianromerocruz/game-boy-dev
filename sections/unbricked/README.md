@@ -170,9 +170,27 @@ TilemapEnd:
 
 My first question here was: if both `Tile Data` and `Tilemap Data` are being saved in `ROM0`, won't the latter overwrite the former? Turns out that the assembler, working sequentially, will place data destined for `ROM0` at _the next available memory location_. Thus, `Tilemap Data` is actually being implicitly defined right after `Tile Data`. 
 
-Note here that `db` stands for define byte (a single byte of data) and `dw` stands for `dw` (two bytes of data).
+Note here that `db` stands for define byte (a single byte of data) and `dw` stands for define word (two bytes of data).
 
 <a id="2-2"></a>
 
 ### Program Entry Point
 
+The first few lines of the program are easy to understand, but there was much for me to learn just by looking at them:
+
+```ASM
+SECTION "Header", ROM0[$100]
+    jp EntryPoint   ; Jump to the entry point
+
+    ds $150 - @, 0  ; Fill the rest of the header with 0s
+```
+
+Here, as explained above a section labelled as `"Header"` is being defined in the ROM starting at location `$100` (i.e. 256<sub>10</sub>). Starting the section off is a jump to a specific label, which happens just after the entry point, and the a definition of storage which warrants some explanation.
+
+> In Z80 programming the `@`  is shorthand for the _current location in memory_ that we are presently at.
+
+So, what this line is saying is, in effect, reserves enough memory to reach the address `%150` from the current address and fills that space with zeroes.
+
+<br>
+
+Now, since these games 
